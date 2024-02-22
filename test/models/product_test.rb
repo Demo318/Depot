@@ -22,14 +22,14 @@ class ProductTest < ActiveSupport::TestCase
     product.price = -1
     assert product.invalid?
     assert_equal(
-      ["must be greater than or equal to 0.01"],
+      ["must be greater than or equal to 0.01 - we don't do freebies"],
       product.errors[:price]
     )
 
     product.price = 0
     assert product.invalid?
     assert_equal(
-      ["must be greater than or equal to 0.01"],
+      ["must be greater than or equal to 0.01 - we don't do freebies"],
       product.errors[:price]
     )
 
@@ -78,6 +78,35 @@ class ProductTest < ActiveSupport::TestCase
       [I18n.translate('errors.messages.taken')],
       product.errors[:title]
     )
+  end
+
+  test "product title must be at least 10 characters long" do
+    product = Product.new(
+      description: "yyy",
+      price: 1,
+      image_url: "lol.jpg",
+    )
+
+    product.title = ""
+    assert product.invalid?
+    assert_equal(
+      ["can't be blank", "is too short (minimum is 10 characters)"],
+      product.errors[:title],
+    )
+    
+    product.title = "123456789"
+    assert product.invalid?
+    assert_equal(
+      ["is too short (minimum is 10 characters)"],
+      product.errors[:title],
+    )
+
+    product.title = "0123456789"
+    assert product.valid?
+
+    product.title = "00123456789"
+    assert product.valid?
+
   end
 
 end
