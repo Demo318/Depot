@@ -20,4 +20,20 @@ As each chapter corrects my bad habits, this repository serves as a reference li
 
 Below are a collection of notes I've gleaned from the book along the way.
 
-(More to come ...)
+### Testing
+
+#### Validations
+
+Validations should be added to the model inside of `app/models/your_model_name.rb`.
+
+Then tests should be written for each validation inside of `test/models/your_model_name_test.rb`.
+
+Use `assert instance.valid?` for when a test ought to pass validatons and successfully save to the database.
+
+Use `assert instance.invalid?` when validations ought to prevent saving the object.
+
+#### Uniqueness
+
+If after the initial creation of a model you add validations to determine a property on an object needs to be unique in each instance, be sure to modify the `create()` and `update()` tests in `test/controllers/your_controller_name_test.rb` to provide unique arguments where appropriate.
+
+For an example, see the `title:` provided to the `create()` and `update()` tests in `test/controllers/products_controller_test.rb` in this repo. Numbers are appended so as to create a random, unique title for both methods.
