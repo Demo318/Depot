@@ -22,6 +22,10 @@ Below are a collection of notes I've gleaned from the book along the way.
 
 ### Templates
 
+#### Image Tag
+
+Use the `image_tag()` helper method for placing images, like this: `<%= image_tag(item.image_url, alt: 'Alt text for accessibility & SEO.', class: 'class1 class2 class-3', id: 'some-id') %>`
+
 #### Preview Text
 
 Use `truncate()` to only grab the first x number of characters from a string. Useful for displaying *the first 100 chracters* from a blog post, for example.
@@ -29,6 +33,12 @@ Use `truncate()` to only grab the first x number of characters from a string. Us
 ```RHTML
 <%= truncate(article.body, length: 100) %>
 ```
+
+#### Sanitize
+
+Use the `sanitize()` helper method to process HTML tags store in text fields in the database (i.e. when the field literally read `<h1><em>A Title For Something!</em></h1>`.
+
+Example: `<%= sanitize(@product.title) %>`
 
 #### Tables
 
