@@ -44,14 +44,14 @@ Use the `cycle()` helper method to add alternating colors row-by-row to a table 
   </tfoot>
   <tbody>
     <% @items.each do |item| %>
-	  <tr class="<%= cycle('bg-green-50', 'bg-white') %>
+	  <tr class="<%= cycle('bg-green-50', 'bg-white') %> >
 	    <td></td>
 		...
 	  </tr>
 	<% end %>
   </tbody>
 </table>
-
+```
 
 ### Testing
 
