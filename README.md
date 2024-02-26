@@ -40,7 +40,7 @@ In this example, we have a list of profiles that need to be cached. We will impl
 
 ```RHTML
 <ul>
-  <% cache @profiles >
+  <% cache @profiles %>
     <% @profiles.each do |profile| %>
 	  <% cache profile %>
 		<li>
@@ -51,6 +51,16 @@ In this example, we have a list of profiles that need to be cached. We will impl
   <% end %>
 </ul>
 ```
+
+### Controllers
+
+#### Concerns
+
+For code that will need to be shared across multiple controllers, create a file in `app/controllers/concerns`.
+
+#### Private Methods
+
+For any code within the controllers method that *should not* have a route drawn for it, be sure to place it inside the `private` keyword.
 
 ### Templates
 
