@@ -20,6 +20,38 @@ As each chapter corrects my bad habits, this repository serves as a reference li
 
 Below are a collection of notes I've gleaned from the book along the way.
 
+### Caching
+
+#### Turn Caching On/Off
+
+##### Development Environment
+
+To turn caching on in the development environment, simply run `$ rails dev:cache` from the console. It should provide the output `Development mode is now being cached.`.
+
+Now changes made to your template won't be loaded. A page will be re-cached only if the information from the database is updated.
+
+Turn it off again by running the same command `$ rails dev:cache`, and it will return `Development mode is no longer being cached.`.
+
+#### Specify Caching
+
+To begin caching effectively, we need to identify withinin our template which model references need to be "watched" for updated versions.
+
+In this example, we have a list of profiles that need to be cached. We will implement the `cache` method as follows:
+
+```RHTML
+<ul>
+  <% cache @profiles >
+    <% @profiles.each do |profile| %>
+	  <% cache profile %>
+		<li>
+			<%= profile.name %>: <%= profile.bio %>
+		</li>
+	  <% end %>
+	<% end %>
+  <% end %>
+</ul>
+```
+
 ### Templates
 
 #### Currency
