@@ -22,6 +22,10 @@ Below are a collection of notes I've gleaned from the book along the way.
 
 ### Templates
 
+#### Currency
+
+Use the `number_to_currency` helper method in a view to display currency values. Example: `<%= number_to_currency(item.pirce) %>`.
+
 #### Image Tag
 
 Use the `image_tag()` helper method for placing images, like this: `<%= image_tag(item.image_url, alt: 'Alt text for accessibility & SEO.', class: 'class1 class2 class-3', id: 'some-id') %>`
