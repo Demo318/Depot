@@ -11,6 +11,14 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should load products index in table" do
+    get products_url
+    assert_select 'table', 1
+    assert_select 'tr', minimum: 1
+    assert_select 'tfoot', 1
+    assert_select 'tbody', 1
+  end
+
   test "should get new" do
     get new_product_url
     assert_response :success
