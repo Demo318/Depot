@@ -1,7 +1,7 @@
 class LineItemsController < ApplicationController
   include CurrentCart
   include IndexCounter
-
+  
   before_action :set_cart, only: %i[ create ]
   before_action :set_line_item, only: %i[ show edit update destroy ]
   before_action :reset_index_counter, only: %i[ create ]

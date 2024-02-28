@@ -1,8 +1,9 @@
 <div id="<%= dom_id cart %>">
   <h2 class="font-bold text-lg mb-3">Your Pragmatic Cart</h2>
-  <ul class="list-disc list-inside">
+  <% # The `class="list-none"` on the <ul> removes the bullet points. %>
+  <ul class="list-none list-inside">
     <% cart.line_items.each do |item| %>
-      <li><%= item.product.title %></li>
+      <li><%= item.quantity %> &times; <%= item.product.title %></li>
     <% end %>
   </ul>
   <% if action_name != "show" %>
